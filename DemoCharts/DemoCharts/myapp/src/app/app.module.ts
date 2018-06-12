@@ -9,6 +9,9 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user/user.component';
 import { RouterModule } from '@angular/router';
+import { ChartsModule } from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +31,9 @@ import { RouterModule } from '@angular/router';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
+    HttpClientModule,
+    ChartsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path:'', component:NavbarComponent,
