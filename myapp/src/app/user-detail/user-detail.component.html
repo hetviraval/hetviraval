@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<div class="container">
+  <div class="col-md-6 col-md-offset-3" style="margin-left: 210px; margin-right: 0">
+    <div *ngIf="user">
+      <h2>{{ user.name | uppercase }} Details</h2>
+      <div class="d-flex">
+        <span class="">Id: </span>
+        <span class="mx-2">{{user.id}}</span>
+      </div>
+      <div class="">
+        <label class="my-2">Name:
+          <input class="form-control" [(ngModel)]="user.name" placeholder="name" />
+        </label>
+      </div>
+      <div>
+        <label class="my-2">Lastname:
+          <input class="form-control" [(ngModel)]="user.lastname" placeholder="lastname" />
+        </label>
+      </div>
+      <div>
+        <label class="my-2">Mobilenumber:
+          <input class="form-control" [(ngModel)]="user.mobilenumber" placeholder="mobilenumber" />
+        </label>
+      </div>
+     
+     
+      <div>
+        <label class="my-2">Birthdate:
+          <input class="form-control" [(ngModel)]="user.birthdate" placeholder="birthdate" />
+        </label>
+      </div>
+      <div>
+        <label class="my-2">City:
+          <input class="form-control" [(ngModel)]="user.city" placeholder="city" />
+        </label>
+      </div>
+      <div>
+        <label class="my-2">Gender:
+          <input class="form-control" [(ngModel)]="user.gender" placeholder="gender" />
+        </label>
+      </div>
+      <div>
+        <label class="my-2">Hobbies:
+          <input class="form-control" [(ngModel)]="user.hobbies" placeholder="Hobbies" />
+        </label>
+      </div>
+
+      <button class="btn btn-info mr-2 my-4" (click)="goBack()">Go Back</button>
+      <button class="btn btn-info mx-4" (click)="save()">Save</button>
+    </div>
+  </div>
+</div>

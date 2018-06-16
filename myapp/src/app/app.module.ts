@@ -2,27 +2,38 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { UserComponent } from './user/user.component';
+import { UserService } from './user.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule } from '@angular/material';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserComponent } from './user/user/user.component';
-import { RouterModule } from '@angular/router';
 import { ChartsModule } from 'ng2-charts';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     DashboardComponent,
-    UserComponent
+    
+    UserComponent,
+    UserDetailComponent,
+    NavbarComponent,
+
+   
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    LayoutModule,
+    HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -31,22 +42,40 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    HttpClientModule,
     ChartsModule,
+    FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {
-        path:'', component:NavbarComponent,
-      },
+     
+     
       {
         path:'dashboard', component:DashboardComponent,
       },
       {
         path:'user', component:UserComponent,
       },
-    ])
+      { 
+        path: 'detail/:id', component: UserDetailComponent 
+      },
+    ]),
+
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    ),
+
+    LayoutModule,
+
+    MatToolbarModule,
+
+    MatButtonModule,
+
+    MatSidenavModule,
+
+    MatIconModule,
+
+    MatListModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

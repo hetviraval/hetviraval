@@ -1,0 +1,159 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<div class="container">
+  <div class="" style="margin-left: 210px; margin-right: 0">
+    <h2 class="text-center my-4">Register</h2>
+   <form [formGroup]="userForm">
+      <div class="form-group">
+        <label>Id : </label>
+        <input type="number" class="form-control" [formControlName]="id" >
+       
+      </div>
+      <div class="form-group">
+        <label>Name :</label>
+        <input  type="text" class= "form-control" [formControlName]="name">
+      </div>
+      <div class="form-group">
+        <label>Lastname</label>
+        <input  type="text"class="form-control" [formControlName]="lastname">
+      </div>
+      <div class="form-group">
+        <label>Mobilenumber :</label>
+        <input type="number" class="form-control" [formControlName]="mobilenumber">
+      </div>
+
+      <div class="form-group" >
+          <label>BirthDate</label>
+          <input  type="date"class="form-control" [formControlName]="birthdate">
+        </div>
+
+        <div class="form-group" >
+            <label>City</label>
+           <select [formControlName]="city" class="form-control" >
+              <option value="volvo">Surat</option>
+              <option value="saab">Vapi</option>
+              <option value="fiat">Valsad</option>
+              <option value="audi">Navsari</option>
+            </select>
+            </div>
+
+
+            <div class="form-group">
+                <label>Gender</label><br>
+                <label class="radio-inline">
+                  <input type="radio" name="radio" [formControlName]="gender">Male
+                </label>
+                <label class="radio-inline" style="margin-left: 20px">
+                  <input type="radio" name="radio" [formControlName]="gender">Female
+                </label>
+                <br>  
+              
+              </div>
+        
+                <div class="form-group">
+                <label>Hobbies</label><br>
+              <input type="checkbox" [formControlName]="hobbies" value="Dancing"> Dancing
+              <input type="checkbox" [formControlName]=" hobbies" value=" Traveling" checked> Traveling<br>
+              </div>           
+              <button type="submit" class="btn btn-info" title="Add" (click)="addUser()">Add</button>
+   </form> 
+
+
+
+
+
+    <!-- <form  id="formNewUser" name="formNewUser" #userForm="ngForm" (ngSubmit)="add(userForm.value)">
+        <div class="form-group">
+          <label>Id </label>
+          <input type="number" style="border-color: lightgray"  class="form-control" name="id" id="id" [(ngModel)]="userForm.id" ngModel >
+        </div>
+        <div class="form-group">
+          <label>Name </label>
+          <input type="text" style="border-color: lightgray"  class="form-control" name="name" id="name" [(ngModel)]="userForm.name" ngModel >
+        </div>
+        <div class="form-group">
+          <label>Lastname</label>
+          <input type="text" style="border-color: lightgray"  class="form-control" name="lastname" id="lastname" [(ngModel)]="userForm.lastname" ngModel>
+        </div>
+        <div class="form-group">
+          <label>MobileNumber:</label>
+          <input type="number" style="border-color: lightgray"  name="mobilenumber" class="form-control" id="mobilenumber" [(ngModel)]="userForm.mobilenumber" ngModel>
+        </div>
+
+        <div class="form-group">
+          <label>BirthDate:</label>
+          <input type="date" style="border-color: lightgray"  name="birthdate" class="form-control" id="birthdate" [(ngModel)]="userForm.birthdate" ngModel>
+        </div>
+
+        <div class="form-group" >
+          <label>City</label>
+         <select name="city" class="form-control"   [(ngModel)]="userForm.city" ngModel>
+            <option value="Surat">Surat</option>
+            <option value="Vapi">Vapi</option>
+            <option value="Valsad">Valsad</option>
+            <option value="Navsari">Navsari</option>
+          </select>
+          </div>
+
+
+          <div class="form-group">
+              <label>Gender</label><br>
+              <label class="radio-inline">
+                <input type="radio"name="radiogender" [(ngModel)]="userForm.radiogender" ngModel>Male
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="radiogender" [(ngModel)]="userForm.radiogender" ngModel>Female
+              </label>
+              <br>  
+            
+            </div>
+      
+            <div class="form-group">
+              <label>Hobbies</label><br>
+            <input type="checkbox" name="Dancing" value="Dancing"[(ngModel)]="userForm.hobbies" ngModel> Dancing
+            <input type="checkbox" name=" Traveling" value=" Traveling" > Traveling<br>
+            
+          </div>           
+         <input class="btn btn-info" align="center" type="submit" value="Save">
+      </form> 
+ -->
+
+
+    <table class="table my-4">
+          <tbody>
+          <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Lastname</th>
+                <th>MobileNumber</th>
+                <th>BirthDate</th>
+                <th>City</th>
+                <th>Gender</th>
+                <th>Hobbies</th>
+              </tr>
+            </thead>
+        <ul class="list-unstyled">
+          <li *ngFor="let user of users">
+            <tr>
+              <td>{{user.id}}</td>
+              <td>
+                <a routerLink="/detail/{{user.id}}">
+                  {{user.name}}
+                  <td>{{user.lastname}}</td>
+                  <td>{{user.mobilenumber}}</td>
+                  <td>{{user.birthdate}}</td>
+                  <td>{{user.city}}</td>
+                  <td>{{user.gender}}</td>
+                  <td>{{user.hobbies}}</td>     
+                </a>
+                <button class="delete" title="delete hero"
+                (click)="delete(user)">delete</button>
+              </td>    
+            </tr>
+          </li> 
+        </ul>     
+      </tbody>
+    </table>
+  </div>
+</div>
