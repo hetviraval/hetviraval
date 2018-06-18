@@ -6,56 +6,79 @@
    <form [formGroup]="userForm">
       <div class="form-group">
         <label>Id : </label>
-        <input type="number" class="form-control" [formControlName]="id" >
-       
+        <input type="number"  formControlName="id" class="form-input">
+        <div style="color:#ff0000;" *ngIf="userForm.controls.id.touched && userForm.controls.id.hasError('required')">
+            <b>please enter </b>
+       </div>
       </div>
       <div class="form-group">
         <label>Name :</label>
-        <input  type="text" class= "form-control" [formControlName]="name">
+        <input  type="text"  formControlName="name" class="form-input">
+        <div style="color:#ff0000;" *ngIf="userForm.controls.name.touched && userForm.controls.name.hasError('required')">
+            <b>please enter name</b>
+       </div>
       </div>
       <div class="form-group">
         <label>Lastname</label>
-        <input  type="text"class="form-control" [formControlName]="lastname">
+        <input  type="text" formControlName="lastname" class="form-input">
+        <div style="color:#ff0000;" *ngIf="userForm.controls.lastname.touched && userForm.controls.lastname.hasError('required')">
+            <b>please enter Lastname</b>
+       </div>
       </div>
       <div class="form-group">
         <label>Mobilenumber :</label>
-        <input type="number" class="form-control" [formControlName]="mobilenumber">
+        <input type="number"  formControlName="mobilenumber" class="form-input">
+        <div style="color:#ff0000;" *ngIf="userForm.controls.mobilenumber.touched && userForm.controls.mobilenumber.hasError('required')">
+            <b>please enter Mobilenumber</b>
+       </div>
+       <div style="color:#ff0000;" *ngIf="userForm.controls.mobilenumber.touched && userForm.controls.mobilenumber.hasError('minLength')">
+          <b>please enter 10 digit</b>
+     </div>
       </div>
 
       <div class="form-group" >
           <label>BirthDate</label>
-          <input  type="date"class="form-control" [formControlName]="birthdate">
+          <input  type="date" formControlName="birthdate" class="form-input">
+          <div style="color:#ff0000;" *ngIf="userForm.controls.birthdate.touched && userForm.controls.birthdate.hasError('required')">
+              <b>please enter BirthDate</b>
+         </div>
         </div>
 
         <div class="form-group" >
             <label>City</label>
-           <select [formControlName]="city" class="form-control" >
-              <option value="volvo">Surat</option>
-              <option value="saab">Vapi</option>
-              <option value="fiat">Valsad</option>
-              <option value="audi">Navsari</option>
+           <select formControlName="city" class="form-input" >
+              <option value="surat">Surat</option>
+              <option value="vapi">Vapi</option>
+              <option value="valsad">Valsad</option>
+              <option value="navsari">Navsari</option>
             </select>
+            <div style="color:#ff0000;" *ngIf="userForm.controls.city.touched && userForm.controls.city.hasError('required')">
+                <b>please enter city</b>
+           </div>
             </div>
 
 
-            <div class="form-group">
+            <div class="form-group radio">
                 <label>Gender</label><br>
-                <label class="radio-inline">
-                  <input type="radio" name="radio" [formControlName]="gender">Male
-                </label>
-                <label class="radio-inline" style="margin-left: 20px">
-                  <input type="radio" name="radio" [formControlName]="gender">Female
-                </label>
-                <br>  
-              
+                <div class="radio">
+                  <label> <input type="radio" name="gender" formControlName="gender" value=male>Male  </label>
+                  <label><input type="radio" name="gender"  formControlName="gender" value=female>Female </label>
               </div>
-        
-                <div class="form-group">
-                <label>Hobbies</label><br>
-              <input type="checkbox" [formControlName]="hobbies" value="Dancing"> Dancing
-              <input type="checkbox" [formControlName]=" hobbies" value=" Traveling" checked> Traveling<br>
-              </div>           
-              <button type="submit" class="btn btn-info" title="Add" (click)="addUser()">Add</button>
+              <div style="color:#ff0000;" *ngIf="userForm.controls.gender.touched && userForm.controls.gender.hasError('required')">
+                  <b>please enter gender</b>
+             </div>        
+            </div>
+            <div class="checkbox">
+              <label class="center-block">
+                  <label>Hobbies</label><br>
+                <input type="checkbox"  name="hobbies" formControlName="hobbies"  value=Dancing> Dancing.
+                <input type="checkbox"  name="hobbies" formControlName="hobbies"  value=Traveling> Traveling.
+              </label>
+              <div style="color:#ff0000;" *ngIf="userForm.controls.hobbies.touched && userForm.controls.hobbies.hasError('required')">
+                  <b>please enter hobbies</b>
+             </div>  
+            </div>
+              <button type="submit" class="btn btn-info" title="Add" (click)="add(userForm.value)">Add</button>
    </form> 
 
 

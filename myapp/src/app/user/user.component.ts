@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../user';
 import { FormGroup, FormBuilder,FormControl, Validators } from '@angular/forms';
+import { validateConfig } from '@angular/router/src/config';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.getUsers();
     this.userForm = this.buildUser(this.emptyUser());
-  }
+    }
   // userForm = new FormGroup({
   //   id: new FormControl('',[Validators.required]),
   //   name: new FormControl('',[Validators.required]),
@@ -32,8 +33,12 @@ export class UserComponent implements OnInit {
       id: new FormControl('',[Validators.required]),
     name: new FormControl('',[Validators.required]),
     lastname: new FormControl('',[Validators.required]),
-    mobilenumber: new FormControl('',[Validators.required]),
+    mobilenumber: new FormControl('',[Validators.required,Validators.minLength(10)]),
     birthdate: new FormControl('',[Validators.required]),
+    city: new FormControl('',[Validators.required]),
+    gender:new FormControl('',[Validators.required]),
+    hobbies:new FormControl('',[Validators.required])
+    
     })
 }
 emptyUser(): User {
@@ -53,15 +58,14 @@ emptyUser(): User {
     .subscribe(users => this.users = users);
   }
   addUser() {
-    debugger
     let newUserData = this.userForm.value;
     console.log(newUserData);
-  }
+    }
   add(users:User): void {
-    debugger
     this.userService.addUser(users)
       .subscribe(users => {
         this.users.push(users);
+        console.log(users);
       });
   }
   delete(users: User): void {
